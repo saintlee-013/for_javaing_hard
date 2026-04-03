@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Main1 {
+    public static void main(String[] args) throws IOException {
+        // 1. Read the entire linear input line
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine(); 
+        
+        // 2. Split the string by spaces to get individual "words"
+        String[] strNums = line.split(" ");
+        int N = strNums.length;
+        
+        // 3. Create the Array (Meeting the "array" requirement)
+        int[] A = new int[N];
+        long totalSum = 0;
+        
+        for (int i = 0; i < N; i++) {
+            A[i] = Integer.parseInt(strNums[i]);
+            totalSum += A[i]; // Keep track of total for the math later
+        }
+
+        // 4. Generate and print the output in the same linear form
+        for (int i = 0; i < N; i++) {
+            System.out.print((totalSum - A[i]) + " ");
+        }
+    }
+}

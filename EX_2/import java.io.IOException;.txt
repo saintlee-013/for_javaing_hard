@@ -1,0 +1,43 @@
+import java.io.IOException;
+
+public class Sum_Manipulation_Of_Array2 {
+    public static void main(String[] args) throws IOException {
+        // We create an array with a large enough size
+        int[] A = new int[100]; 
+        int N = 0;
+        int currentNum = 0;
+        long totalSum = 0;
+        boolean buildingNumber = false;
+
+        System.out.println("Enter numbers separated by spaces (Press Enter when done):");
+
+        while (true) {
+            // Reads one character at a time (ASCII value)
+            int c = System.in.read();
+
+            // Check if the character is a digit (ASCII '0' is 48, '9' is 57)
+            if (c >= '0' && c <= '9') {
+                currentNum = (currentNum * 10) + (c - '0');
+                buildingNumber = true;
+            } 
+            // If we hit a space or the end of the line
+            else if (c == ' ' || c == '\n' || c == '\r' || c == -1) {
+                if (buildingNumber) {
+                    A[N] = currentNum;
+                    totalSum += A[N];
+                    N++;
+                    currentNum = 0;
+                    buildingNumber = false;
+                }
+                // If it's the end of the line, stop reading
+                if (c == '\n' || c == '\r' || c == -1) break;
+            }
+        }
+
+        // Now we have our array A and the totalSum. 
+        // We print the results as required.
+        for (int i = 0; i < N; i++) {
+            System.out.print((totalSum - A[i]) + " ");
+        }
+    }
+}
